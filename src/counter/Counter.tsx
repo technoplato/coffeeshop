@@ -18,7 +18,7 @@ export const Counter = ({
   useInterval(handleTicketPickUp, COUNTER_PICKUP_INTERVAL)
   return (
     <View style={{ padding: 8 }}>
-      <Title>Open Tickets</Title>
+      <Title>Pick-Up Counter</Title>
       <FlatList
         style={{ padding: 8 }}
         data={counter}
