@@ -14,6 +14,9 @@ export const Tickets = ({ tickets }: TicketProps) => {
       <FlatList
         style={{ padding: 8 }}
         data={tickets}
+        keyExtractor={(item) => {
+          return item.id
+        }}
         renderItem={({ item: ticket }) => {
           return (
             <Text

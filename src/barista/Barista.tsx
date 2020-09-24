@@ -37,7 +37,6 @@ export const Barista = ({
 
   useEffect(() => {
     if (status === 'idle' && tickets.length > 0) {
-      console.log('use effect')
       setStatus('working')
       const nextTicket = tickets[0]
       setCurrentTicket(nextTicket)

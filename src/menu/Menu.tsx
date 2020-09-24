@@ -9,7 +9,7 @@ type MenuProps = {
 
 const menu: MenuType = {
   items: [
-    { name: 'Care Au Lait', seconds: 4 },
+    { name: 'Cafe Au Lait', seconds: 4 },
     { name: 'Cappuccino', seconds: 10 },
     { name: 'Espresso', seconds: 15 },
   ],
@@ -21,10 +21,12 @@ export const Menu = ({ handleMenuItemClick }: MenuProps) => {
       <Title>Menu</Title>
       <FlatList
         data={menu.items}
+        keyExtractor={(item) => {
+          return item.name
+        }}
         renderItem={({ item: menuItem }) => {
           return (
             <Text
-              key={menuItem.name}
               onPress={() => handleMenuItemClick(menuItem)}
               style={{
                 paddingHorizontal: 12,

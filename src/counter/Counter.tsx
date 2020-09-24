@@ -1,24 +1,41 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { FlatList, Text, View } from 'react-native'
-import { BaristaStatus, Ticket } from '../types'
+import { Ticket } from '../types'
 import { Title } from 'react-native-paper'
-import { useInterval } from '../utils/useInterval'
+import { useTimer } from 'use-timer'
 
 type CounterProps = {
   counter: Array<Ticket>
-  handleTicketPickUp: (ticket: Ticket) => void
+  handleTicketPickUp: () => void
 }
 
-const COUNTER_PICKUP_INTERVAL = 3000
+const COUNTER_PICKUP_INTERVAL = 3
 
 export const Counter = ({
   counter,
   handleTicketPickUp,
 }: CounterProps) => {
-  useInterval(handleTicketPickUp, COUNTER_PICKUP_INTERVAL)
+  const { time, start, reset } = useTimer({
+    initialTime: COUNTER_PICKUP_INTERVAL,
+    timerType: 'DECREMENTAL',
+
+    onTimeUpdate(time) {
+      if (time === 0) {
+        handleTicketPickUp()
+        reset()
+        start()
+      }
+    },
+  })
+
+  useEffect(() => {
+    start()
+  }, [])
+
   return (
     <View style={{ padding: 8 }}>
       <Title>Pick-Up Counter</Title>
+      <Text>Another pickup in {time}...</Text>
       <FlatList
         style={{ padding: 8 }}
         data={counter}
@@ -28,7 +45,7 @@ export const Counter = ({
         renderItem={({ item: ticket }) => {
           return (
             <Text
-              onPress={() => handleTicketPickUp(ticket)}
+              onPress={handleTicketPickUp}
               style={{
                 paddingHorizontal: 12,
                 paddingVertical: 6,
