@@ -28,7 +28,6 @@ export const Barista = ({
     },
 
     onTimeUpdate(time) {
-      console.log({ time })
       if (time === 0 && currentTicket) {
         finishTicket(currentTicket)
         pause()
@@ -38,6 +37,8 @@ export const Barista = ({
 
   useEffect(() => {
     if (status === 'idle' && tickets.length > 0) {
+      console.log('use effect')
+      setStatus('working')
       const nextTicket = tickets[0]
       setCurrentTicket(nextTicket)
       advanceTime(-1 * nextTicket.item.seconds)
@@ -46,15 +47,8 @@ export const Barista = ({
     }
   }, [status, tickets])
 
-  useEffect(() => {
-    if (currentTicket) {
-      setStatus('working')
-    } else {
-      setStatus('idle')
-    }
-  }, [currentTicket])
-
   const finishTicket = (ticket: Ticket) => {
+    setStatus('idle')
     setCurrentTicket(null)
     handleTicketFinished(ticket)
   }

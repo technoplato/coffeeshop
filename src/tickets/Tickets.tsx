@@ -8,7 +8,6 @@ type TicketProps = {
 }
 
 export const Tickets = ({ tickets }: TicketProps) => {
-  console.log({ tickets })
   return (
     <View style={{ padding: 8 }}>
       <Title>Open Tickets</Title>

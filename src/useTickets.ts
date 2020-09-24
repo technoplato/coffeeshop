@@ -10,14 +10,13 @@ export const useTickets = () => {
   }
 
   const removeTicket = (ticket: Ticket) => {
-    const ticketIndex = openTickets.findIndex(
-      (t) => t.id === ticket.id
-    )
-    console.log({ ticketIndex })
+    // const ticketIndex = openTickets.findIndex(
+    //   (t) => t.id === ticket.id
+    // )
 
-    openTickets.splice(ticketIndex, 1)
-    console.log({ openTickets })
-    setOpenTickets(openTickets)
+    const ticketsCopy = [...openTickets]
+    ticketsCopy.shift()
+    setOpenTickets(ticketsCopy)
   }
 
   return { addTicket, openTickets, removeTicket }
