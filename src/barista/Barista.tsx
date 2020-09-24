@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { FlatList, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
 import { BaristaStatus, Ticket } from '../types'
 import { Subheading, Title } from 'react-native-paper'
-import { useTimer } from 'react-timer-hook'
-import useCountDown from 'react-countdown-hook'
+import { useTimer } from 'use-timer'
 
 type BaristaProps = {
   tickets: Array<Ticket>
   handleTicketStarted: (ticket: Ticket) => void
   handleTicketFinished: (ticket: Ticket) => void
 }
-
-const time = new Date()
-time.setSeconds(time.getSeconds() + 100000)
 
 export const Barista = ({
   tickets,
@@ -24,26 +20,28 @@ export const Barista = ({
     null
   )
 
-  const {
-    seconds,
-    isRunning,
-    start,
-    pause,
-    resume,
-    restart,
-  } = useTimer({
-    expiryTimestamp: time,
-    onExpire: () => console.warn('expire'),
+  const { time, start, pause, advanceTime } = useTimer({
+    initialTime: 0,
+    timerType: 'DECREMENTAL',
+    onTimeOver() {
+      pause()
+    },
+
+    onTimeUpdate(time) {
+      console.log({ time })
+      if (time === 0 && currentTicket) {
+        finishTicket(currentTicket)
+        pause()
+      }
+    },
   })
 
   useEffect(() => {
     if (status === 'idle' && tickets.length > 0) {
-      console.log('running effect')
       const nextTicket = tickets[0]
       setCurrentTicket(nextTicket)
-      const time = new Date()
-      time.setSeconds(time.getSeconds() + nextTicket.item.seconds)
-      restart(time.getSeconds() * 1000)
+      advanceTime(-1 * nextTicket.item.seconds)
+      start()
       handleTicketStarted(nextTicket)
     }
   }, [status, tickets])
@@ -67,8 +65,8 @@ export const Barista = ({
   return (
     <View style={{ padding: 8 }}>
       <Title>Barista</Title>
-      <Subheading>{seconds} remaining</Subheading>
-      <Subheading>{isRunning ? 'Running' : 'Not running'}</Subheading>
+      <Subheading>Making a {currentTicket.item.name}</Subheading>
+      <Subheading>It'll be about {time} more seconds...</Subheading>
 
       <Text
         onPress={() => finishTicket(currentTicket)}
