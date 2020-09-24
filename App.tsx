@@ -1,7 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { useInterval } from "./src/utils/useInterval";
+import React from "react";
+import { StyleSheet, View } from "react-native";
 import Menu from "./src/menu/Menu";
 
 export default function App() {
