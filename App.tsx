@@ -5,14 +5,11 @@ import { useTickets } from './src/useTickets'
 import Tickets from './src/tickets/Tickets'
 import { Ticket } from './src/types'
 import Barista from './src/barista/Barista'
+import { useCounter } from './src/counter/useCounter'
 
 export default function App() {
   const { addTicket, openTickets, removeTicket } = useTickets()
-  const { addToCounter, counter , pickupFromCounter} = useCounter()
-
-  // const moveTicketToCounter = (ticket: Ticket) => {
-  //   // TODO
-  // }
+  const { addToCounter, counter, pickupFromCounter } = useCounter()
 
   console.log({ openTickets })
 
@@ -23,9 +20,12 @@ export default function App() {
       <Barista
         tickets={openTickets}
         handleTicketStarted={removeTicket}
-        handleTicketFinished={removeTicket}
+        handleTicketFinished={addToCounter}
       />
-      {/*<Tickets tickets={openTickets} />*/}
+      <Counter
+        counter={counter}
+        handleTicketPickUp={pickupFromCounter}
+      />
       {/*<Tickets tickets={openTickets} />*/}
     </SafeAreaView>
   )
