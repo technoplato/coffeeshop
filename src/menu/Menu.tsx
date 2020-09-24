@@ -1,6 +1,7 @@
 import React from 'react'
-import { FlatList, Text } from 'react-native'
+import { FlatList, Text, View } from 'react-native'
 import { MenuItem, MenuType } from '../types'
+import { Title } from 'react-native-paper'
 
 type MenuProps = {
   handleMenuItemClick: (item: MenuItem) => void
@@ -16,24 +17,26 @@ const menu: MenuType = {
 
 export const Menu = ({ handleMenuItemClick }: MenuProps) => {
   return (
-    <FlatList
-      style={{ width: '100%' }}
-      data={menu.items}
-      renderItem={({ item: menuItem }) => {
-        return (
-          <Text
-            key={menuItem.name}
-            onPress={() => handleMenuItemClick(menuItem)}
-            style={{
-              paddingHorizontal: 12,
-              paddingVertical: 6,
-            }}
-          >
-            {menuItem.name}
-          </Text>
-        )
-      }}
-    />
+    <View style={{ padding: 8 }}>
+      <Title>Menu</Title>
+      <FlatList
+        data={menu.items}
+        renderItem={({ item: menuItem }) => {
+          return (
+            <Text
+              key={menuItem.name}
+              onPress={() => handleMenuItemClick(menuItem)}
+              style={{
+                paddingHorizontal: 12,
+                paddingVertical: 6,
+              }}
+            >
+              {menuItem.name}
+            </Text>
+          )
+        }}
+      />
+    </View>
   )
 }
 
