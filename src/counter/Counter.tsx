@@ -14,7 +14,27 @@ export const Counter = ({
 }: CounterProps) => {
   return (
     <View style={{ padding: 8 }}>
-      <Title>Counter</Title>
+      <Title>Open Tickets</Title>
+      <FlatList
+        style={{ padding: 8 }}
+        data={counter}
+        keyExtractor={(item) => {
+          return item.id
+        }}
+        renderItem={({ item: ticket }) => {
+          return (
+            <Text
+              onPress={() => handleTicketPickUp(ticket)}
+              style={{
+                paddingHorizontal: 12,
+                paddingVertical: 6,
+              }}
+            >
+              {ticket.id.substr(0, 5)}: {ticket.item.name}
+            </Text>
+          )
+        }}
+      />
     </View>
   )
 }

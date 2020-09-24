@@ -3,4 +3,9 @@
   <component name="JavaScriptSettings">
     <option name="languageLevel" value="JSX" />
   </component>
+  <component name="ReactNativePackager" nodePath="project" reactNativePackagePath="$USER_HOME$/.nvm/versions/node/v12.18.3/lib/node_modules/react-native-cli" workingDirectory="$PROJECT_DIR$">
+    <scripts>
+      <item value="start" />
+    </scripts>
+  </component>
 </project>

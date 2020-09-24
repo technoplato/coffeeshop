@@ -2,21 +2,16 @@ import React, { useState } from 'react'
 import { MenuItem, Ticket } from './types'
 
 export const useCounter = () => {
-  const [counterTickets, setCounterTickets] = useState<Array<Ticket>>(
-    []
-  )
+  const [counter, setCounterTickets] = useState<Array<Ticket>>([])
 
-  const addTicket = (ticket: Ticket) => {
-    setCounterTickets([...counterTickets, ticket])
+  const addToCounter = (ticket: Ticket) => {
+    setCounterTickets([...counter, ticket])
   }
 
-  const removeTicket = (ticket: Ticket) => {
-    const ticketIndex = counterTickets.findIndex(
-      (t) => t.id === ticket.id
-    )
-    counterTickets.splice(ticketIndex, 1)
-    setCounterTickets(counterTickets)
+  const pickupFromCounter = (ticket: Ticket) => {
+    const ticketIndex = counter.findIndex((t) => t.id === ticket.id)
+    counter.splice(ticketIndex, 1)
+    setCounterTickets(counter)
   }
-
-  return { addTicket, counterTickets, removeTicket }
+  return { addToCounter, counter, pickupFromCounter }
 }
