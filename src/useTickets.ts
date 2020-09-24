@@ -9,5 +9,16 @@ export const useTickets = () => {
     setOpenTickets([...openTickets, { id: uuidv4(), item: menuItem }])
   }
 
-  return { addTicket, openTickets }
+  const removeTicket = (ticket: Ticket) => {
+    const ticketIndex = openTickets.findIndex(
+      (t) => t.id === ticket.id
+    )
+    console.log({ ticketIndex })
+
+    openTickets.splice(ticketIndex, 1)
+    console.log({ openTickets })
+    setOpenTickets(openTickets)
+  }
+
+  return { addTicket, openTickets, removeTicket }
 }

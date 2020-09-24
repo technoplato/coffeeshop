@@ -7,11 +7,14 @@ import { Ticket } from './src/types'
 import Barista from './src/barista/Barista'
 
 export default function App() {
-  const { addTicket, openTickets } = useTickets()
+  const { addTicket, openTickets, removeTicket } = useTickets()
+  const { addToCounter, counter , pickupFromCounter} = useCounter()
 
-  const moveTicketToCounter = (ticket: Ticket) => {
-    // TODO
-  }
+  // const moveTicketToCounter = (ticket: Ticket) => {
+  //   // TODO
+  // }
+
+  console.log({ openTickets })
 
   return (
     <SafeAreaView style={styles.container}>
@@ -19,7 +22,8 @@ export default function App() {
       <Tickets tickets={openTickets} />
       <Barista
         tickets={openTickets}
-        moveTicketToCounter={moveTicketToCounter}
+        handleTicketStarted={removeTicket}
+        handleTicketFinished={removeTicket}
       />
       {/*<Tickets tickets={openTickets} />*/}
       {/*<Tickets tickets={openTickets} />*/}
