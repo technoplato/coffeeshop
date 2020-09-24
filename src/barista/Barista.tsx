@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { FlatList, Text, View } from 'react-native'
 import { BaristaStatus, Ticket } from '../types'
-import { Title } from 'react-native-paper'
+import { Subheading, Title } from 'react-native-paper'
+import { useTimer } from 'react-timer-hook'
+import useCountDown from 'react-countdown-hook'
 
 type BaristaProps = {
   tickets: Array<Ticket>
   handleTicketStarted: (ticket: Ticket) => void
   handleTicketFinished: (ticket: Ticket) => void
 }
+
+const time = new Date()
+time.setSeconds(time.getSeconds() + 100000)
 
 export const Barista = ({
   tickets,
@@ -19,10 +24,26 @@ export const Barista = ({
     null
   )
 
+  const {
+    seconds,
+    isRunning,
+    start,
+    pause,
+    resume,
+    restart,
+  } = useTimer({
+    expiryTimestamp: time,
+    onExpire: () => console.warn('expire'),
+  })
+
   useEffect(() => {
     if (status === 'idle' && tickets.length > 0) {
+      console.log('running effect')
       const nextTicket = tickets[0]
       setCurrentTicket(nextTicket)
+      const time = new Date()
+      time.setSeconds(time.getSeconds() + nextTicket.item.seconds)
+      restart(time.getSeconds() * 1000)
       handleTicketStarted(nextTicket)
     }
   }, [status, tickets])
@@ -46,6 +67,8 @@ export const Barista = ({
   return (
     <View style={{ padding: 8 }}>
       <Title>Barista</Title>
+      <Subheading>{seconds} remaining</Subheading>
+      <Subheading>{isRunning ? 'Running' : 'Not running'}</Subheading>
 
       <Text
         onPress={() => finishTicket(currentTicket)}

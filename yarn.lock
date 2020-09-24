@@ -4524,6 +4524,11 @@ range-parser@~1.2.1:
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
   integrity sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==
 
+react-countdown-hook@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-countdown-hook/-/react-countdown-hook-1.0.1.tgz#4d4f380ca1663205599ca4d579df3643babe60dd"
+  integrity sha512-3koo2MVCRkcGMdSXb4+lu2N5wzCM9HOJbXPhz97tbhJ4pzwgnbx37wfxPmWD6KdfluwDl43kK32Q28LVdTDb5A==
+
 react-devtools-core@^4.6.0:
   version "4.8.2"
   resolved "https://registry.yarnpkg.com/react-devtools-core/-/react-devtools-core-4.8.2.tgz#4465f2e8de7795564aa20f28b2f3a9737586db23"
@@ -4619,6 +4624,11 @@ react-refresh@^0.4.0:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.4.3.tgz#966f1750c191672e76e16c2efa569150cc73ab53"
   integrity sha512-Hwln1VNuGl/6bVwnd0Xdn1e84gT/8T9aYNL+HAKDArLCS7LWjwr7StE30IEYbIkx0Vi3vs+coQxe+SQDbGbbpA==
+
+react-timer-hook@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-timer-hook/-/react-timer-hook-2.0.3.tgz#4dd6c4d78b489b41d9af9c1319c025d1caa5d8fa"
+  integrity sha512-9+O4P0m+ALzAoJXyDx/enxefWLXjkiX3SmU2sssHv1JT6hWSacMTqotT0nvD+zaoAwS0fgnOaKUGe0R/r4TyaQ==
 
 react-timer-mixin@^0.13.4:
   version "0.13.4"
