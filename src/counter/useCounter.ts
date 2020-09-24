@@ -8,10 +8,9 @@ export const useCounter = () => {
     setCounterTickets([...counter, ticket])
   }
 
-  const pickupFromCounter = (ticket: Ticket) => {
-    const ticketIndex = counter.findIndex((t) => t.id === ticket.id)
-    counter.splice(ticketIndex, 1)
-    setCounterTickets(counter)
+  const clearCounter = () => {
+    setCounterTickets([])
   }
-  return { addToCounter, counter, pickupFromCounter }
+
+  return { addToCounter, counter, clearCounter }
 }

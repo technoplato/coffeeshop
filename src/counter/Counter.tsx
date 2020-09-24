@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { FlatList, Text, View } from 'react-native'
 import { BaristaStatus, Ticket } from '../types'
 import { Title } from 'react-native-paper'
+import { useInterval } from '../utils/useInterval'
 
 type CounterProps = {
   counter: Array<Ticket>
   handleTicketPickUp: (ticket: Ticket) => void
 }
 
+const COUNTER_PICKUP_INTERVAL = 3000
+
 export const Counter = ({
   counter,
   handleTicketPickUp,
 }: CounterProps) => {
+  useInterval(handleTicketPickUp, COUNTER_PICKUP_INTERVAL)
   return (
     <View style={{ padding: 8 }}>
       <Title>Open Tickets</Title>

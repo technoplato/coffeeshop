@@ -14,13 +14,10 @@ export const Tickets = ({ tickets }: TicketProps) => {
       <FlatList
         style={{ padding: 8 }}
         data={tickets}
-        keyExtractor={(item) => {
-          console.log({ item })
-          return item.id
-        }}
         renderItem={({ item: ticket }) => {
           return (
             <Text
+              key={ticket.id}
               style={{
                 paddingHorizontal: 12,
                 paddingVertical: 6,
